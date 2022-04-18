@@ -15,7 +15,7 @@ namespace OptionPricerWorkBook
         private void Ribbon1_Load(object sender, RibbonUIEventArgs e)
         {
             Globals.Sheet4.Columns.ColumnWidth = 20;
-            Globals.Sheet4.Cells[row_start, 3].Value = "Portfolio Value";
+            Globals.Sheet4.Cells[row_start, 2].Value = "Portfolio Value";
             Globals.Sheet4.Cells[row_start+2, 3].Value = "Share Name";
             Globals.Sheet4.Cells[row_start+3, 3].Value = "Start Date";
             Globals.Sheet4.Cells[row_start + 4, 3].Value = "Maturity date";
@@ -32,11 +32,16 @@ namespace OptionPricerWorkBook
 
             Globals.Sheet4.Cells[row_start + 20, 3].Value = "Portfolio Risk Metrics";
             Globals.Sheet4.Cells[row_start + 21, 2].Value = "Historical VaR";
+            Globals.Sheet4.Cells[row_start + 21, 4].Value = "Static Total";
+            Globals.Sheet4.Cells[row_start + 21, 5].Value = "Stand-Alone Equity";
+            Globals.Sheet4.Cells[row_start + 21, 6].Value = "Stand-Alone Volatility";
+            Globals.Sheet4.Cells[row_start + 21, 7].Value = "Stand-Alone Rates";
+            Globals.Sheet4.Cells[row_start + 21, 8].Value = "Stand-Alone Dividends";
             Globals.Sheet4.Cells[row_start + 22, 3].Value = "1% VaR";
-            Globals.Sheet4.Cells[row_start + 23, 3].Value = "2% VaR";
+            Globals.Sheet4.Cells[row_start + 23, 3].Value = "2.5% VaR";
             Globals.Sheet4.Cells[row_start + 24, 2].Value = "Monte Carlo VaR";
             Globals.Sheet4.Cells[row_start + 25, 3].Value = "1% VaR";
-            Globals.Sheet4.Cells[row_start + 26, 3].Value = "2% VaR";
+            Globals.Sheet4.Cells[row_start + 26, 3].Value = "2.5% VaR";
 
 
 
@@ -143,7 +148,12 @@ namespace OptionPricerWorkBook
 
             var val = string.Format("{0:C}", portfolio_val);
 
-            Globals.Sheet4.Cells[row_start, 4].Value = val;
+            Globals.Sheet4.Cells[row_start, 3].Value = val;
+        }
+
+        private void HSVaRBtn_Click(object sender, RibbonControlEventArgs e)
+        {
+
         }
     }
 }

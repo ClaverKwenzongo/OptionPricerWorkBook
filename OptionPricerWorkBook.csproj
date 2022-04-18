@@ -133,6 +133,7 @@
     <Compile Include="Ribbon1.Designer.cs">
       <DependentUpon>Ribbon1.cs</DependentUpon>
     </Compile>
+    <Compile Include="riskMetrics.cs" />
     <Compile Include="Sheet1.cs">
       <DependentUpon>Market Data.xlsx</DependentUpon>
     </Compile>

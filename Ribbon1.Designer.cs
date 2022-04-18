@@ -37,6 +37,8 @@
             this.tab1 = this.Factory.CreateRibbonTab();
             this.group1 = this.Factory.CreateRibbonGroup();
             this.testBtn = this.Factory.CreateRibbonButton();
+            this.HSVaRBtn = this.Factory.CreateRibbonButton();
+            this.MCVaRBtn = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.group1.SuspendLayout();
             this.SuspendLayout();
@@ -45,20 +47,33 @@
             // 
             this.tab1.ControlId.ControlIdType = Microsoft.Office.Tools.Ribbon.RibbonControlIdType.Office;
             this.tab1.Groups.Add(this.group1);
-            this.tab1.Label = "TabAddIns";
+            this.tab1.Label = "QuantCalcs";
             this.tab1.Name = "tab1";
             // 
             // group1
             // 
             this.group1.Items.Add(this.testBtn);
+            this.group1.Items.Add(this.HSVaRBtn);
+            this.group1.Items.Add(this.MCVaRBtn);
             this.group1.Label = "group1";
             this.group1.Name = "group1";
             // 
             // testBtn
             // 
-            this.testBtn.Label = "testWrite";
+            this.testBtn.Label = "Portfolio Valuation";
             this.testBtn.Name = "testBtn";
             this.testBtn.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.testBtn_Click);
+            // 
+            // HSVaRBtn
+            // 
+            this.HSVaRBtn.Label = "HSVaR";
+            this.HSVaRBtn.Name = "HSVaRBtn";
+            this.HSVaRBtn.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.HSVaRBtn_Click);
+            // 
+            // MCVaRBtn
+            // 
+            this.MCVaRBtn.Label = "MonteCarloVaR";
+            this.MCVaRBtn.Name = "MCVaRBtn";
             // 
             // Ribbon1
             // 
@@ -79,6 +94,8 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonTab tab1;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup group1;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton testBtn;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton HSVaRBtn;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton MCVaRBtn;
     }
 
     partial class ThisRibbonCollection
