@@ -9,14 +9,12 @@ namespace OptionPricerWorkBook
 {
     internal class EuropeanOptionPricer
     {
-        //private string ticker { get; set; }
         private double Strike { get; set; }
         private int Psi { get; set; }
         private double TotalDays { get; set; }
 
         public EuropeanOptionPricer(double strike, int _psi, double totalDays)
         {
-            //ticker = _Ticker_; //The ticker variable was not neccessarily needed for pricing, but I will just leave it here for show.
             Strike = strike;
             Psi = _psi;
             TotalDays = totalDays;
