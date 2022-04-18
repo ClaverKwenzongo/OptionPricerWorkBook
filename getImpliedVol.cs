@@ -38,7 +38,6 @@ namespace OptionPricerWorkBook
             while(string.IsNullOrWhiteSpace(Globals.Sheet2.Cells[row,1].Value?.ToString()) == false)
             {
                 DateTime ws_date = getDate(Globals.Sheet2.Cells[row, 1].Value.ToString());
-                //Debug.WriteLine(ws_date);
                 if (ws_date.ToString("dd/MM/yyyy") == start_date)
                 {
                     _date_row = row;
@@ -52,7 +51,6 @@ namespace OptionPricerWorkBook
 
             while (string.IsNullOrWhiteSpace(Globals.Sheet2.Cells[_date_row, col2].Value?.ToString()) == false)
             {
-                //int rate_col = _start_col;
                 if (string.IsNullOrWhiteSpace(Globals.Sheet2.Cells[2,col2 + 1].Value?.ToString()) == false)
                 {
                     if (_op_tenor == double.Parse(Globals.Sheet2.Cells[2, col2].Value.ToString()))

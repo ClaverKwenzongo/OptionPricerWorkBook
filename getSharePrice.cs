@@ -52,15 +52,5 @@ namespace OptionPricerWorkBook
 
             return share_price;
         }
-        //public double GetSharePrice(ExcelWorkbook ws, string shareName, string start_date)
-        //{
-        //    double share_price = 0;
-
-        //    int col = 1;
-        //    while (string.IsNullOrEmpty(ws.Cells[2, col].Value.ToString()))
-
-        //        return share_price;
-        //}
-
     }
 }

@@ -19,26 +19,11 @@ namespace OptionPricerWorkBook
 
         public double getRate(double _op_tenor, string start_date)
         {
-            //int col = 2;
-            //int _start_col = 0;
-            //while (string.IsNullOrWhiteSpace(Globals.Sheet6.Cells[1, col].Value?.ToString()) == false)
-            //{
-            //    string ws_share = Globals.Sheet6.Cells[1, col].Value;
-            //    if (ws_share.Substring(0, 3) == shareName)
-            //    {
-            //        _start_col = col;
-            //        break;
-            //    }
-
-            //    col += col_increase;
-            //}
-
             int row = 3;
             int _date_row = 0;
             while (string.IsNullOrWhiteSpace(Globals.Sheet6.Cells[row, 1].Value?.ToString()) == false)
             {
                 DateTime ws_date = getDate(Globals.Sheet6.Cells[row, 1].Value.ToString());
-                //Debug.WriteLine(ws_date);
                 if (ws_date.ToString("dd/MM/yyyy") == start_date)
                 {
                     _date_row = row;
@@ -52,7 +37,6 @@ namespace OptionPricerWorkBook
 
             while (string.IsNullOrWhiteSpace(Globals.Sheet6.Cells[_date_row, col2].Value?.ToString()) == false)
             {
-                //int rate_col = _start_col;
                 if (string.IsNullOrWhiteSpace(Globals.Sheet6.Cells[2, col2 + 1].Value?.ToString()) == false)
                 {
                     if (_op_tenor == double.Parse(Globals.Sheet6.Cells[2, col2].Value.ToString()))
