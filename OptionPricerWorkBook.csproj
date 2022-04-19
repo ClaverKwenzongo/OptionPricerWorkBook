@@ -125,6 +125,7 @@
     <Compile Include="getRates.cs" />
     <Compile Include="getSharePrice.cs" />
     <Compile Include="getYield.cs" />
+    <Compile Include="getPercentile.cs" />
     <Compile Include="ImpliedVolatility.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ribbon1.cs">
