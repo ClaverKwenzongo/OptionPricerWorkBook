@@ -189,11 +189,8 @@ namespace OptionPricerWorkBook
                 _sum_ += _percentile_ * sensitivity * size * pos;
             }
 
-            var val = string.Format("{0:C}", sum_);
-            var val_ = string.Format("{0:C}", _sum_);
-
-            Globals.Sheet4.Cells[row_start + 22, 6].Value = val;
-            Globals.Sheet4.Cells[row_start + 23, 6].Value = val_;
+            Globals.Sheet4.Cells[row_start + 22, 6].Value = sum_;
+            Globals.Sheet4.Cells[row_start + 23, 6].Value = _sum_;
         }
 
     }

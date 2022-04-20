@@ -172,8 +172,21 @@ namespace OptionPricerWorkBook
             getStandAloneDividend.standAlone_div(row_start);
             getStandAloneVol.standAlone_vol(row_start);
 
-            Globals.Sheet4.Cells[row_start + 22, 4].Value = Globals.Sheet4.Cells[row_start + 22, 5].Value + Globals.Sheet4.Cells[row_start + 22, 6].Value+ Globals.Sheet4.Cells[row_start + 22, 7].Value+ Globals.Sheet4.Cells[row_start + 22, 8].Value;
-            Globals.Sheet4.Cells[row_start + 23, 4].Value = Globals.Sheet4.Cells[row_start + 23, 5].Value + Globals.Sheet4.Cells[row_start + 23, 6].Value + Globals.Sheet4.Cells[row_start + 23, 7].Value + Globals.Sheet4.Cells[row_start + 23, 8].Value;
+            double a_1 = double.Parse(Globals.Sheet4.Cells[row_start + 22, 5].Value.ToString());
+            double a_2 = double.Parse(Globals.Sheet4.Cells[row_start + 22, 6].Value.ToString());
+            double a_3 = double.Parse(Globals.Sheet4.Cells[row_start + 22, 7].Value.ToString());
+            double a_4 = double.Parse(Globals.Sheet4.Cells[row_start + 22, 8].Value.ToString());
+
+            ////Compute 1% total static VaR
+            Globals.Sheet4.Cells[row_start + 22, 4].Value = a_1 + a_2 + a_3 + a_4;
+
+            double b_1 = double.Parse(Globals.Sheet4.Cells[row_start + 23, 5].Value.ToString());
+            double b_2 = double.Parse(Globals.Sheet4.Cells[row_start + 23, 6].Value.ToString());
+            double b_3 = double.Parse(Globals.Sheet4.Cells[row_start + 23, 7].Value.ToString());
+            double b_4 = double.Parse(Globals.Sheet4.Cells[row_start + 23, 8].Value.ToString());
+
+            //Compute 2.5% total static VaR
+            Globals.Sheet4.Cells[row_start + 23, 4].Value = b_1 + b_2 + b_3 + b_4;
 
 
         }
