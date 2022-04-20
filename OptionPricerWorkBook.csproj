@@ -159,12 +159,19 @@
     <Compile Include="Sheet4.Designer.cs">
       <DependentUpon>Sheet4.Designer.xml</DependentUpon>
     </Compile>
+    <Compile Include="Sheet5.cs">
+      <DependentUpon>Market Data.xlsx</DependentUpon>
+    </Compile>
+    <Compile Include="Sheet5.Designer.cs">
+      <DependentUpon>Sheet5.Designer.xml</DependentUpon>
+    </Compile>
     <Compile Include="Sheet6.cs">
       <DependentUpon>Market Data.xlsx</DependentUpon>
     </Compile>
     <Compile Include="Sheet6.Designer.cs">
       <DependentUpon>Sheet6.Designer.xml</DependentUpon>
     </Compile>
+    <Compile Include="standAloneRisks.cs" />
     <Compile Include="ThisWorkbook.cs">
       <DependentUpon>Market Data.xlsx</DependentUpon>
     </Compile>
@@ -226,6 +233,11 @@
       <DependentUpon>Sheet4.cs</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Sheet5.Designer.xml">
+      <DependentUpon>Sheet5.cs</DependentUpon>
+    </None>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -250,6 +262,7 @@
           <HostItem Name="Sheet2" Code="Sheet2.cs" CanonicalName="Sheet2" DisplayName="Implied Volatilities" Blueprint="Sheet2.Designer.xml" GeneratedCode="Sheet2.Designer.cs" />
           <HostItem Name="Sheet3" Code="Sheet3.cs" CanonicalName="Sheet3" DisplayName="Dividend Yields" Blueprint="Sheet3.Designer.xml" GeneratedCode="Sheet3.Designer.cs" />
           <HostItem Name="Sheet4" Code="Sheet4.cs" CanonicalName="Sheet4" DisplayName="Sheet1" Blueprint="Sheet4.Designer.xml" GeneratedCode="Sheet4.Designer.cs" />
+          <HostItem Name="Sheet5" Code="Sheet5.cs" CanonicalName="Sheet5" DisplayName="Sheet2" Blueprint="Sheet5.Designer.xml" GeneratedCode="Sheet5.Designer.cs" />
           <HostItem Name="Sheet6" Code="Sheet6.cs" CanonicalName="Sheet6" DisplayName="Interest Rates" Blueprint="Sheet6.Designer.xml" GeneratedCode="Sheet6.Designer.cs" />
           <HostItem Name="ThisWorkbook" Code="ThisWorkbook.cs" CanonicalName="ThisWorkbook" Blueprint="ThisWorkbook.Designer.xml" GeneratedCode="ThisWorkbook.Designer.cs" />
         </Host>

@@ -13,7 +13,7 @@ namespace OptionPricerWorkBook {
     
     
     /// 
-    [Microsoft.VisualStudio.Tools.Applications.Runtime.StartupObjectAttribute(3)]
+    [Microsoft.VisualStudio.Tools.Applications.Runtime.StartupObjectAttribute(4)]
     [global::System.Security.Permissions.PermissionSetAttribute(global::System.Security.Permissions.SecurityAction.Demand, Name="FullTrust")]
     public sealed partial class Sheet4 : Microsoft.Office.Tools.Excel.WorksheetBase {
         

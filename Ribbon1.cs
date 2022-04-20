@@ -14,6 +14,12 @@ namespace OptionPricerWorkBook
     public partial class Ribbon1
     {
         int row_start = 5;
+
+        getSharePrice getShare = new getSharePrice();
+        getImpliedVol getVol = new getImpliedVol();
+        getYield getDividentYield = new getYield();
+        getRates getRates = new getRates();
+        standAloneRisks getStandAloneRisks = new standAloneRisks();
         private void Ribbon1_Load(object sender, RibbonUIEventArgs e)
         {
             Globals.Sheet4.Columns.ColumnWidth = 20;
@@ -45,11 +51,6 @@ namespace OptionPricerWorkBook
             Globals.Sheet4.Cells[row_start + 25, 3].Value = "1% VaR";
             Globals.Sheet4.Cells[row_start + 26, 3].Value = "2.5% VaR";
 
-
-
-
-
-
         }
 
         static int getCol_Increase()
@@ -78,12 +79,16 @@ namespace OptionPricerWorkBook
             return days;
         }
 
-            private void testBtn_Click(object sender, RibbonControlEventArgs e)
+        static DateTime getDate(string _date)
         {
-            getSharePrice getShare = new getSharePrice();
-            getImpliedVol getVol = new getImpliedVol();
-            getYield getDividentYield = new getYield();
-            getRates getRates = new getRates(); 
+            CultureInfo cultureInfo = new CultureInfo("en-US");
+            DateTime wsDate = DateTime.Parse(_date, cultureInfo);
+
+            return wsDate;
+        }
+
+        private void testBtn_Click(object sender, RibbonControlEventArgs e)
+        {
 
             int col_inc = getCol_Increase();
 
@@ -155,91 +160,8 @@ namespace OptionPricerWorkBook
 
         private void HSVaRBtn_Click(object sender, RibbonControlEventArgs e)
         {
-            riskMetrics risks = new riskMetrics();
-
-            List<double> porfolio_pl = new List<double>();
-
-            int row = 3;
-            int row_count = 0;
-            while (string.IsNullOrWhiteSpace(Globals.Sheet1.Cells[row, 1].Value?.ToString()) == false)
-            {
-                //create a list whose entries are zeroes...
-                porfolio_pl.Add(0);
-                row_count++;
-                row++;
-            }
-
-            //count how many shares are in the portfolio: this is needed in the computation of the average P&L....
-            int col = 2;
-            int count = 0;
-            while (string.IsNullOrWhiteSpace(Globals.Sheet1.Cells[2, col].Value?.ToString()) == false)
-            {
-                count++;
-                col++;
-            }
-
-            int date_r = 3;
-           // while(string.IsNullOrWhiteSpace(Globals.Sheet1.Cells[date_r, 1].Value?.ToString()) == false)
-            while(date_r < row_count+1)
-            {
-                //Check in the shares columns whether the next row is null or white space
-                if(string.IsNullOrWhiteSpace(Globals.Sheet1.Cells[date_r+1,2].Value?.ToString()) == false)
-                {
-
-                    //int share_col = 2;
-                    int col_j = 4;
-                    double sum = 0;
-                    while (string.IsNullOrWhiteSpace(Globals.Sheet4.Cells[row_start + 2, col_j].Value?.ToString()) == false)
-                    {
-                        string option_type = Globals.Sheet4.Cells[row_start + 7, col_j].Value;
-
-                        int psi = 0;
-                        if (option_type.ToUpper() == "PUT")
-                        {
-                            psi = -1;
-                        }
-                        else
-                        {
-                            psi = 1;
-                        }
-
-                        double K = Globals.Sheet4.Cells[row_start + 5, col_j].Value;
-
-                        string user_share = Globals.Sheet4.Cells[row_start + 2, col_j].Value;
-
-                        string mat_date = Globals.Sheet4.Cells[row_start + 4, col_j].Value;
-
-                        double p_l = risks.getPandL(mat_date, col_j - 2,date_r, user_share, psi, K);
-
-                        //Find the average p&l from the p&l of each share on the day:
-                        sum += p_l / count;
-
-                        //share_col++;
-                        col_j++;
-                    }
-
-                    porfolio_pl.Add(sum);
-                }
-                else
-                {
-                    break;
-                }
-
-                date_r++;
-            }
-
-            getPercentile percentile = new getPercentile();
-
-            double[] portfolio_pl_array = porfolio_pl.ToArray();
-
-            //double x = StatsFunctions.Percentile(data, 0.95);
-
-            double percentile_ = portfolio_pl_array.Percentile(99); 
-
-
-
-            Globals.Sheet4.Cells[row_start + 22, 4].Value = percentile_;
-            //Globals.Sheet4.Cells[row_start + 23, 4].Value = "2.5% VaR";
+            //riskMetrics risks = new riskMetrics();
+            getStandAloneRisks.standAlone_equity(row_start);
         }
     }
 }
