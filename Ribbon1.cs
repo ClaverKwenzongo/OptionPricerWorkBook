@@ -19,7 +19,8 @@ namespace OptionPricerWorkBook
         getImpliedVol getVol = new getImpliedVol();
         getYield getDividentYield = new getYield();
         getRates getRates = new getRates();
-        standAloneRisks getStandAloneRisks = new standAloneRisks();
+        standAloneEquity getStandAloneEquity = new standAloneEquity();
+        standAloneRates getStandAloneRates = new standAloneRates();
         private void Ribbon1_Load(object sender, RibbonUIEventArgs e)
         {
             Globals.Sheet4.Columns.ColumnWidth = 20;
@@ -161,7 +162,8 @@ namespace OptionPricerWorkBook
         private void HSVaRBtn_Click(object sender, RibbonControlEventArgs e)
         {
             //riskMetrics risks = new riskMetrics();
-            getStandAloneRisks.standAlone_equity(row_start);
+            getStandAloneEquity.standAlone_equity(row_start);
+            getStandAloneRates.standAlone_rate(row_start);
         }
     }
 }

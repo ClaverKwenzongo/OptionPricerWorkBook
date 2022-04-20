@@ -171,7 +171,8 @@
     <Compile Include="Sheet6.Designer.cs">
       <DependentUpon>Sheet6.Designer.xml</DependentUpon>
     </Compile>
-    <Compile Include="standAloneRisks.cs" />
+    <Compile Include="standAloneEquity.cs" />
+    <Compile Include="standAloneRates.cs" />
     <Compile Include="ThisWorkbook.cs">
       <DependentUpon>Market Data.xlsx</DependentUpon>
     </Compile>
