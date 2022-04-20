@@ -86,7 +86,7 @@ namespace OptionPricerWorkBook
                 double sensitivity = 0;
                 double size = 0;
 
-                if (string.IsNullOrWhiteSpace(Globals.Sheet4.Cells[row_start + 12, col_j].Value?.ToString()) == true)
+                if (string.IsNullOrWhiteSpace(Globals.Sheet4.Cells[row_start + 16, col_j].Value?.ToString()) == true)
                 {
                     MessageBox.Show("To calculate risk metrics, you must valuate the portfolio first so the sensitivities are known.");
                 }
