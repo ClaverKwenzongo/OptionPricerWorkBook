@@ -39,6 +39,7 @@ namespace OptionPricerWorkBook
             double greek = 0;
 
             double d_1 = (Math.Log(_SharePrice_ / Strike) + (_risk_free_ - _div_yield_ + Math.Pow(_vol_, 2) / 2) * (TotalDays / days_in_year)) / (_vol_ * Math.Sqrt(TotalDays / days_in_year));
+            double d_2 = d_1 - _vol_*Math.Sqrt(TotalDays / days_in_year);
 
             if (greek_type.ToUpper() == "DELTA")
             {
@@ -53,6 +54,15 @@ namespace OptionPricerWorkBook
             {
                 greek = _SharePrice_ * Math.Pow(Math.E, -_div_yield_ * TotalDays / days_in_year) * (Math.Sqrt(TotalDays / days_in_year)) * Normal.PDF(0, 1, d_1);
 
+            }
+            else if (greek_type.ToUpper() == "RHO")
+            {
+                greek = Psi * Strike * (TotalDays / days_in_year) * Math.Pow(Math.E, -_risk_free_ * TotalDays / days_in_year) * Normal.CDF(0, 1, Psi * d_2);
+
+            }
+            else if (greek_type.ToUpper() == "EPSILON")
+            {
+                greek = -Psi*_SharePrice_*(TotalDays/days_in_year)*Math.Pow(Math.E,-_div_yield_ * TotalDays/days_in_year)*Normal.CDF(0,1,Psi*d_1);
             }
             else
             {

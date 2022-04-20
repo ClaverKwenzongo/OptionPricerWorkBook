@@ -7,10 +7,9 @@ using System.Globalization;
 using System.Diagnostics;
 using MathNet.Numerics.Statistics;
 using System.Windows.Forms;
-
 namespace OptionPricerWorkBook
 {
-    public class standAloneRates
+    public class standAloneDividend
     {
         getSharePrice getShare = new getSharePrice();
         getImpliedVol getVol = new getImpliedVol();
@@ -51,7 +50,7 @@ namespace OptionPricerWorkBook
 
             return wsDate;
         }
-        public void standAlone_rate(int row_start)
+        public void standAlone_div(int row_start)
         {
             List<double> porfolio_pl = new List<double>();
 
@@ -87,14 +86,14 @@ namespace OptionPricerWorkBook
                 double sensitivity = 0;
                 double size = 0;
 
-                if (string.IsNullOrWhiteSpace(Globals.Sheet4.Cells[row_start + 15, col_j].Value?.ToString()) == true)
+                if (string.IsNullOrWhiteSpace(Globals.Sheet4.Cells[row_start + 12, col_j].Value?.ToString()) == true)
                 {
                     MessageBox.Show("To calculate risk metrics, you must valuate the portfolio first so the sensitivities are known.");
                 }
                 else
                 {
                     //Get calculated sensititivity: delta for each share.
-                    sensitivity = double.Parse(Globals.Sheet4.Cells[row_start + 15, col_j].Value.ToString());
+                    sensitivity = double.Parse(Globals.Sheet4.Cells[row_start + 16, col_j].Value.ToString());
 
                     //Get the amount of shares
                     size = double.Parse(Globals.Sheet4.Cells[row_start + 8, col_j].Value.ToString());
@@ -120,8 +119,8 @@ namespace OptionPricerWorkBook
 
                 double Tenor_ = tenor(lock_start_date, mat_date);
                 double spot = getShare._getSharePrice(lock_start_date, user_share.ToUpper());
+                double rf = getRates.getRate(Tenor_, lock_start_date);
                 double vol = getVol.getImpl_Vol(Tenor_, lock_start_date, col_up, user_share.ToUpper());
-                double q = getDividentYield.getDiv_Yield(Tenor_, lock_start_date, col_up, user_share.ToUpper());
                 double K = Globals.Sheet4.Cells[row_start + 5, col_j].Value;
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -155,13 +154,13 @@ namespace OptionPricerWorkBook
                         EuropeanOptionPricer pricer_1 = new EuropeanOptionPricer(K, psi, Tenor_1);
                         EuropeanOptionPricer pricer_2 = new EuropeanOptionPricer(K, psi, Tenor_2);
 
-                        //Change the rates...............................................................................
-                        double rf_1 = getRates.getRate(Tenor_1, date_start_1.ToString("dd/MM/yyyy"));
-                        double rf_2 = getRates.getRate(Tenor_2, date_start_2.ToString("dd/MM/yyyy"));
+                        //Change the volatility...............................................................................
+                        double q_1 = getDividentYield.getDiv_Yield(Tenor_1, date_start_1.ToString("dd/MM/yyyy"), col_up, user_share.ToUpper());
+                        double q_2 = getDividentYield.getDiv_Yield(Tenor_2, date_start_2.ToString("dd/MM/yyyy"), col_up, user_share.ToUpper());
                         //////////////////////////////////////////////////////////////////////////////////////////////////
 
-                        double price_1 = pricer_1.optionPrice(spot, rf_1, vol, q);
-                        double price_2 = pricer_2.optionPrice(spot, rf_2, vol, q);
+                        double price_1 = pricer_1.optionPrice(spot, rf, vol, q_1);
+                        double price_2 = pricer_2.optionPrice(spot, rf, vol, q_2);
 
                         p_l = Math.Log(price_2 / price_1);
 
@@ -198,3 +197,4 @@ namespace OptionPricerWorkBook
 
     }
 }
+

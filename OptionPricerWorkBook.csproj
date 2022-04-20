@@ -134,7 +134,6 @@
     <Compile Include="Ribbon1.Designer.cs">
       <DependentUpon>Ribbon1.cs</DependentUpon>
     </Compile>
-    <Compile Include="riskMetrics.cs" />
     <Compile Include="Sheet1.cs">
       <DependentUpon>Market Data.xlsx</DependentUpon>
     </Compile>
@@ -171,8 +170,10 @@
     <Compile Include="Sheet6.Designer.cs">
       <DependentUpon>Sheet6.Designer.xml</DependentUpon>
     </Compile>
+    <Compile Include="standAloneDividend.cs" />
     <Compile Include="standAloneEquity.cs" />
     <Compile Include="standAloneRates.cs" />
+    <Compile Include="standAloneVol.cs" />
     <Compile Include="ThisWorkbook.cs">
       <DependentUpon>Market Data.xlsx</DependentUpon>
     </Compile>

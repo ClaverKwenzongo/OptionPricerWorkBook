@@ -21,6 +21,8 @@ namespace OptionPricerWorkBook
         getRates getRates = new getRates();
         standAloneEquity getStandAloneEquity = new standAloneEquity();
         standAloneRates getStandAloneRates = new standAloneRates();
+        standAloneVol getStandAloneVol = new standAloneVol();
+        standAloneDividend getStandAloneDividend = new standAloneDividend();
         private void Ribbon1_Load(object sender, RibbonUIEventArgs e)
         {
             Globals.Sheet4.Columns.ColumnWidth = 20;
@@ -37,7 +39,9 @@ namespace OptionPricerWorkBook
             Globals.Sheet4.Cells[row_start + 12, 3].Value = "Delta";
             Globals.Sheet4.Cells[row_start + 13, 3].Value = "Gamma";
             Globals.Sheet4.Cells[row_start + 14, 3].Value = "Vega";
-            Globals.Sheet4.Cells[row_start + 15, 3].Value = "Implied Volatility";
+            Globals.Sheet4.Cells[row_start + 15, 3].Value = "Rho";
+            Globals.Sheet4.Cells[row_start + 16, 3].Value = "Epsilon";
+            Globals.Sheet4.Cells[row_start + 17, 3].Value = "Implied Volatility";
 
             Globals.Sheet4.Cells[row_start + 20, 3].Value = "Portfolio Risk Metrics";
             Globals.Sheet4.Cells[row_start + 21, 2].Value = "Historical VaR";
@@ -147,7 +151,9 @@ namespace OptionPricerWorkBook
                 Globals.Sheet4.Cells[row_start + 12, j].Value = pricer.sensitivity(S_0, rate, div_yield, impl_Vol, "Delta");
                 Globals.Sheet4.Cells[row_start + 13, j].Value = pricer.sensitivity(S_0, rate, div_yield, impl_Vol, "Gamma");
                 Globals.Sheet4.Cells[row_start + 14, j].Value = pricer.sensitivity(S_0, rate, div_yield, impl_Vol, "Vega");
-                Globals.Sheet4.Cells[row_start + 15, j].Value = newton_implied_vol.newton_vol(psi);
+                Globals.Sheet4.Cells[row_start + 15, j].Value = pricer.sensitivity(S_0, rate, div_yield, impl_Vol, "Rho");
+                Globals.Sheet4.Cells[row_start + 16, j].Value = pricer.sensitivity(S_0, rate, div_yield, impl_Vol, "Epsilon");
+                Globals.Sheet4.Cells[row_start + 17, j].Value = newton_implied_vol.newton_vol(psi);
 
                 portfolio_val += size * pricer.optionPrice(S_0, rate, impl_Vol, div_yield);
 
@@ -161,9 +167,15 @@ namespace OptionPricerWorkBook
 
         private void HSVaRBtn_Click(object sender, RibbonControlEventArgs e)
         {
-            //riskMetrics risks = new riskMetrics();
             getStandAloneEquity.standAlone_equity(row_start);
             getStandAloneRates.standAlone_rate(row_start);
+            getStandAloneDividend.standAlone_div(row_start);
+            getStandAloneVol.standAlone_vol(row_start);
+
+            Globals.Sheet4.Cells[row_start + 22, 4].Value = Globals.Sheet4.Cells[row_start + 22, 5].Value + Globals.Sheet4.Cells[row_start + 22, 6].Value+ Globals.Sheet4.Cells[row_start + 22, 7].Value+ Globals.Sheet4.Cells[row_start + 22, 8].Value;
+            Globals.Sheet4.Cells[row_start + 23, 4].Value = Globals.Sheet4.Cells[row_start + 23, 5].Value + Globals.Sheet4.Cells[row_start + 23, 6].Value + Globals.Sheet4.Cells[row_start + 23, 7].Value + Globals.Sheet4.Cells[row_start + 23, 8].Value;
+
+
         }
     }
 }
